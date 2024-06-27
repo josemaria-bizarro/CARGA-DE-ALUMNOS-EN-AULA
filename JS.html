@@ -1,0 +1,84 @@
+<script>
+    window.addEventListener('load',cargaDatalists);
+    let wsOpcEdu="";
+    let datuaAsigna="";
+    let wDatuaAsigna=[];
+    let nomAsigAula="";
+
+    function cargaDatalists()           //DISPARA LA CARGA DE LOS DATALISTS
+    {
+        let elemenFocus=document.getElementById('datalistOpEdu');
+        elemenFocus.focus();
+        var opcEdu=cargaOpcEdu();
+    }
+
+    function cargaOpcEdu()
+    {
+        google.script.run
+        .withSuccessHandler(cargaDatalistOpcEdu)
+        .withFailureHandler(proc=>{console.log("error al cargar el datalist Opc Edu")})
+        .obtieneOpcEdu()        //Obtiene datos de bd opc edu
+    }
+    function cargaDatalistOpcEdu(datuaOpcEdu)  //OBTIENE LOS DATOS CARGADOS DE BD PARA INCORPORARLOS A DATALIST
+    {
+        const inputOpcEdu=document.getElementById("datalistOpEdu"); //TOMA EL DATALIST Y LO CARGA EN UNA VARIABLE
+        datuaOpcEdu.sort()
+        datuaOpcEdu.forEach(ilara => {                              //USA CADA UNO DE LOS DATOS CARGADOS DE LA BD PARA ASIGNARLOS A CADA CAMPO DEL DATALIST, TAMBIEN SE PUEDEN ALMACENAR EN MEMEORIA LOS DATOS A USAR MAS TARDE
+            const opcionOE=document.createElement("option");   //CREA UN ELEMENTO OPTION PARA EL DATASET POR CADA FILA A USAR
+            opcionOE.value=ilara[0];                            //VALUE ES EL VALOR A USAR EN EL FORMULARIO
+            inputOpcEdu.appendChild(opcionOE);                  //CREA UN "HIJO" EN EL DATASET, O SEA UNA FILA
+        });
+    }
+
+    function cargaCicloEsc()
+    {
+        var espa="";
+        
+        var form1 =document.getElementById("formCarga");//obtiene los valores capturados en el formulario
+        wsOpcEdu =form1[0].value;                 //usa la primera opcion para validar el ciclo escolar de la OpEd 
+        
+        document.getElementById("cicloEscDatalist").value=espa; //inicializa el campo de ciclo escolar antes de ingresar datos
+
+        google.script.run
+        .withSuccessHandler(cargaDatalistCicloEsc)
+        .withFailureHandler(proc=>{console.log("error al cargar el datalist Ciclo Esc")})
+        .obtieneCicloEsc(wsOpcEdu)
+    }
+
+    function cargaDatalistCicloEsc(datuaCicloEsc)
+    {
+        const inputCicloEsc=document.getElementById("datalistCicloEsc");
+        datuaCicloEsc.forEach(ilara=>{
+                const opcionCE=document.createElement("option");
+                opcionCE.value=ilara[0];
+                inputCicloEsc.appendChild(opcionCE);
+        })
+    }
+
+    function actualizaForm()        //REALIZE EL PROCESO DE IMPRESION DE LISTAS *************************
+    {
+        event.preventDefault();
+        let datuak=[];
+        var form = document.getElementById("formCarga")
+       
+        datuak.push(form[0].value,  //opc edu
+                    form[1].value,  //ciclo
+                    );
+        
+            google.script.run
+            .withFailureHandler(error=>{console.log("Error en los datos de aulas");wserror=1;erroralcargar()})
+            .withSuccessHandler(erroralcargar)
+            .seleccionaAulas(datuak);     
+    }
+
+    function erroralcargar(wserror)
+{ if (wserror==1)
+    {
+      alert("   \n     ERROR EN EL PROCESO \n **** ALUMNO NO ACTUALIZADO *****")
+    }
+    else
+    {
+      alert("**************************\n     . \n Cambios realizados, \nrecargue la página (F5)")
+    }
+}
+</script>

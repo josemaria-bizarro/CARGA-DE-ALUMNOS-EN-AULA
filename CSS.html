@@ -1,0 +1,101 @@
+<style>
+    body
+    {
+        font-family: "Sofia", sans-serif;
+        min-height: 100vh;
+    }
+
+    p{
+        color: dodgerblue;
+        size: 8px;
+        margin-left: 30px;
+        margin-right: 50px;
+    }
+
+    .encabeza img{
+        float: left;
+        width: 80px;
+        height: 30px;
+        margin-left: 30px;
+        margin-top: 50px;
+
+    }
+
+    .encabeza h1{
+        position:center;
+        top: 18px;
+        left: 10px;
+        padding: 30px;  /*en el padding margin border, etc si solo pongo un valor lo asume a los cuatro lados*/
+        text-align: center;
+        color: rgb(0,81,255);
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        opacity: 0.8;
+        border-style: groove;
+        margin: auto;
+    }
+
+    .formulario{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        column-gap: 5px;
+        grid-template-rows: repeat(6,1fr);
+        row-gap: 5px;
+        background-color: rgb(195,228,240);
+        padding: 30px;
+    }
+
+    .elemento1{
+        grid-column: 1;
+        text-align: end;
+    }
+
+    .elemento1a{
+        grid-column: 2/4;
+        grid-row: 1;
+    }
+
+    .elemento2{
+        grid-row: 3;
+        grid-column: 1;
+        text-align: end;
+    }
+
+    .elemento2a{
+        grid-row: 3;
+        grid-column: 2/4;
+    }
+
+    .pie_pagina{
+        position: sticky;
+        top: 100%;
+    }
+
+    .button{
+        background-color: blue;
+        border: none;
+        color: white;
+        padding: 5px 29px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 6px;
+        box-shadow: 0 0 0 1px #163772 inset,0 0 0 2px rgba(255, 255, 255, 0.15) inset,0 4px 0 0 #333797 0 4px 0 1px rgba(0,0,0, 0.4), 0 0px 8px 1px rgba(0,0,0, 0.5);
+    }
+
+    .button:active{
+        background-color: #474EDD;
+        top: 4px;
+        box-shadow: 0 0 0 1px #163772 inset,0 0 0 2px rgba(255, 255, 255, 0.15) inset,0 0 0 0      #333797,0 0 0 1px rgba(0, 0, 0, 0.4),0 0px 8px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .button:hover{
+        background-color: #5158E0;
+        position: relative;
+        top: -1px;
+        box-shadow: 0 0 0 1px #163772 inset,0 0 0 2px rgba(255, 255, 255, 0.15) inset,0 5px 0 0      #333797,0 5px 0 1px rgba(0, 0, 0, 0.4),0 5px 8px 1px rgba(0, 0, 0, 0.5);
+    }
+</style>

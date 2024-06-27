@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es-mx">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <title>Carga de Alumnos</title>
+        <?!= incluye('CSS') ?> 
+    </head>
+
+    <header>
+        <div class="encabeza" >
+            <h1 class="titulo">Carga de Alumnos en Aulas</h1>
+        </div>
+    </header>
+    <body>
+        <section>
+            <article>
+                <p> Prepara la carga de alumnos en aulas</p>
+            </article>
+        </section>
+        <!-- DEFINE EL FORMULARIO-->
+         <form id="formCarga" autocomplete="on" onsubmit="actualiza(esto)" > <!-- nombre del formulario-->
+            <div class="formulario">
+                <div class="elemento1">
+                    <label for="opcEduDatalist" class="form-label">Opción Educativa</label>
+                </div>
+
+                <div class="elemento1a"> <!-- lista desplegable de la opc edu-->
+                    <input list="datalistOpEdu" id="opcEduDatalist" placeholder="Selecciona Opción Educativa"
+                    class="forma-control" onchange="cargaCicloEsc()" size="50" required>
+                    <datalist id="datalistOpEdu">
+                    </datalist>
+                </div>
+
+                <div class="elemento2">
+                    <label for="cicloEscDatalist" class="form-label">Ciclo Escolar</label>
+                </div>
+                <div class="elemento2a">  <!--lista despegable de ciclo escolar-->
+                    <input list="datalistCicloEsc" id="cicloEscDatalist" placeholder="Selecciona Ciclo Escolar"
+                    type="text" size="30" required>
+                    <datalist id="datalistCicloEsc">
+                    </datalist>
+                </div>
+            </div>
+        </form>
+        <br>
+        <button type="button" onclick="actualizaForm()">Actualizar</button>
+
+        <footer class="pie_pagina">
+            <small>
+                <address>
+                    Armada de México 1394 Col. Residencial Cafetales
+                </address>
+            </small>
+        </footer>
+
+        <?!= incluye('JS') ?>
+
+    </body>
+</html>
